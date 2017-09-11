@@ -1,4 +1,4 @@
-# Setting Up a Docker Development Environment
+# Setting Up a Docker Development Environment for Rails
 
 
 ## Setup
