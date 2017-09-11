@@ -1,0 +1,103 @@
+# Setting Up a Docker Development Environment
+
+
+## Setup
+	Clone this repository, cd into this projects directory, and follow
+    the remain steps.
+
+
+## Install Docker 
+	1. See https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu
+
+	2. $ sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
+
+	3. $ sudo apt-get install apt-transport-https  ca-certificates  curl  software-properties-common
+
+	4. $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+	5. $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu `lsb_release -cs` stable"
+
+	6. $ sudo apt-get update
+
+	7. This will install the lastest stable version.  In production we'll want to install a specific version.
+	   - $ sudo apt-get install docker-ce
+
+	8. Confirm that docker is working.
+	   - $ sudo docker run hello-world
+
+
+## Linux Post-installation
+	- See https://docs.docker.com/engine/installation/linux/linux-postinstall/
+	
+
+## Install Docker Compose
+	1. See https://github.com/docker/compose/releases
+	
+	2. $ cd /tmp
+	
+	3. $ curl -L https://github.com/docker/compose/releases/download/$dockerComposeVersion/docker-compose-`uname -s`-`uname -m` > docker-compose 
+		where $dockerComposeVersion is the latest version as shown on https://github.com/docker/compose/releases.
+
+	4. $ chmod 755 docker-compose
+
+	5. $ sudo mv docker-compose /usr/local/bin
+
+	6. $ docker-compose --version
+
+
+## On Rails
+	1. Generate the Rails skeleton app
+	  - $ docker-compose run web rails new . --force --database=postgresql
+	  - $ sudo chown -R $USER:$USER
+	  - $ docker-compose build
+
+	2. Overwrite config/database.yml
+	  - $ mv database.yml config/database.yml
+
+	3. Start the app
+	  - $ docker compose up
+
+	4. In another terminal create the dataase
+	  - $ docker-compose run web rake db:create
+
+	5. Point your browser to http://localhost:3000
+
+
+## It Works!
+	1. Notice that there are two containers running; one that contains
+	the rails app, and one that contains the database.
+		- $ docker container ls
+
+	2. Using the appropriate container id listed in the previous
+	command, run a bash shell in the rails app container.
+		- $ docker exec -it RAILS_APP_CONTAINER_ID "/bin/bash"
+
+	3. Using the appropriate container id listed in the previous
+	command, run a bash shell in the database app container, and then
+	run psql.
+		- $ docker exec -it DATABASE_CONTAINER_ID "/bin/bash"
+		- $ psql -U postgres -d myapp_development
+
+	4. On your host machine, use your favorite editor to change the
+      rails app's source code, reload the page in browser, and view
+      the change.
+
+	5. In another terminal cleanly stop the application
+		- $ docker-compose down
+
+	6. To restart the app, in separate terminals, run
+	   - $ docker-compose up
+	   - $ docker-compose run web rake db:create
+
+	7. If things go left 
+	   - $ sudo rm tmp/pids/server.pid 
+	  
+	  
+## TO DO
+	- Docker Image Registry
+	- https://cloud.docker.com/
+
+
+## References
+	- https://docs.docker.com/compose/rails/
+	- https://docs.docker.com/compose/faq/
