@@ -3,7 +3,9 @@
 
 ## Setup
 	Clone this repository, cd into this projects directory, and follow
-    the remain steps.
+    the remain steps.  You may wish to copy this README.md file to a
+	another directory since it will be overwritten in the On Rails
+	section.
 
 
 ## Install Docker 
@@ -48,14 +50,14 @@
 ## On Rails
 	1. Generate the Rails skeleton app
 	  - $ docker-compose run web rails new . --force --database=postgresql
-	  - $ sudo chown -R $USER:$USER
+	  - $ sudo chown -R $USER:$USER .
 	  - $ docker-compose build
 
 	2. Overwrite config/database.yml
 	  - $ mv database.yml config/database.yml
 
 	3. Start the app
-	  - $ docker compose up
+	  - $ docker-compose up
 
 	4. In another terminal create the dataase
 	  - $ docker-compose run web rake db:create
@@ -82,7 +84,7 @@
       rails app's source code, reload the page in browser, and view
       the change.
 
-	5. In another terminal cleanly stop the application
+	5. In another terminal, cleanly stop the application
 		- $ docker-compose down
 
 	6. To restart the app, in separate terminals, run
