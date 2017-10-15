@@ -54,13 +54,13 @@
 	  - $ docker-compose build
 
 	2. Overwrite config/database.yml
-	  - $ mv database.yml config/database.yml
+	  - $ mv database.yml config/
 
 	3. Start the app
 	  - $ docker-compose up
 
 	4. In another terminal create the dataase
-	  - $ docker-compose run web rake db:create
+	  - $ docker-compose run web rails db:create
 
 	5. Point your browser to http://localhost:3000
 
@@ -89,7 +89,7 @@
 
 	6. To restart the app, in separate terminals, run
 	   - $ docker-compose up
-	   - $ docker-compose run web rake db:create
+	   - $ docker-compose run web rails db:create
 
 	7. If things go left 
 	   - $ sudo rm tmp/pids/server.pid 
