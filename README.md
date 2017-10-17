@@ -51,13 +51,13 @@
 	1. Generate the Rails skeleton app
 	  - $ docker-compose run web rails new . --force --database=postgresql
 	  - $ sudo chown -R $USER:$USER .
-	  - $ docker-compose build
+	  - $ docker-compose --force-rm build
 
 	2. Overwrite config/database.yml
 	  - $ mv database.yml config/
 
 	3. Start the app
-	  - $ docker-compose up
+	  - $ docker-compose up --remove-orphans 
 
 	4. In another terminal create the dataase
 	  - $ docker-compose run web rails db:create
