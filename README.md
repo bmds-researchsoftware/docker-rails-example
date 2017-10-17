@@ -106,6 +106,16 @@
 	dockerrailsexample_myapp_web_volume, and is located in
 	/var/lib/docker/volumes.  To inspect the volume use
 		$ docker inspect dockerrailsexample_myapp_web_volume.
+	
+	10. You can start the web service interactively by 
+		- replacing the command in the docker-compose.yml file with 
+			command: /bin/bash
+		- typing
+			$ docker-compose run --rm --service-ports web
+		- starting Rails from within the Docker container by typing
+			$ rails s -p 3000 -b '0.0.0.0'
+		If you install an editor in the container so you can work
+		insider the container.
 	  
 	  
 ## TO DO
