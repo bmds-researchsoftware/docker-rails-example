@@ -114,8 +114,8 @@
 			$ docker-compose run --rm --service-ports web
 		- starting Rails from within the Docker container by typing
 			$ rails s -p 3000 -b '0.0.0.0'
-		If you install an editor in the container so you can work
-		insider the container.
+	If you install an editor in the container you can work insider
+m	the container. 
 	  
 	  
 ## TO DO
