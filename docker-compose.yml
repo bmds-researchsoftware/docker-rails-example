@@ -2,16 +2,16 @@ version: '3.2'
 services:
   db:
     image: postgres
-    container_name: myapp-db-container
+    container_name: myapp_db_container
     restart: always
     volumes:
-      - $HOME/myapp-db-data:/var/lib/postgresql/data
+      - /data/myapp_db_volume:/var/lib/postgresql/data
   web:
     build:
       context: .
       dockerfile: Dockerfile
     image: myapp:latest
-    container_name: myapp-web-container
+    container_name: myapp_web_container
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     # volumes:
     #   - .:/myapp

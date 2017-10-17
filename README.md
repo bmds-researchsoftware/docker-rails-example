@@ -68,31 +68,44 @@
 ## It Works!
 	1. Notice that there are two containers running; one that contains
 	the rails app, and one that contains the database.
-		- $ docker container ls
+		- $ docker container ls.
 
 	2. Using the appropriate container id listed in the previous
-	command, run a bash shell in the rails app container.
-		- $ docker exec -it RAILS_APP_CONTAINER_ID "/bin/bash"
+	command, run a bash shell in the rails app container
+		- $ docker exec -it RAILS_APP_CONTAINER_ID "/bin/bash".
+	In our case use
+		- $ docker exec -it myapp-web-container "/bin/bash".
 
 	3. Using the appropriate container id listed in the previous
 	command, run a bash shell in the database app container, and then
-	run psql.
-		- $ docker exec -it DATABASE_CONTAINER_ID "/bin/bash"
-		- $ psql -U postgres -d myapp_development
+	run psql
+		- $ docker exec -it DATABASE_CONTAINER_ID "/bin/bash".
+	In our case use
+		- $ docker exec -it myapp-db-container "/bin/bash". Then start 
+	psql
+		- $ psql -U postgres -d myapp_development.
 
 	4. On your host machine, use your favorite editor to change the
       rails app's source code, reload the page in browser, and view
       the change.
 
 	5. In another terminal, cleanly stop the application
-		- $ docker-compose down
+		- $ docker-compose down.
 
-	6. To restart the app, in separate terminals, run
-	   - $ docker-compose up
-	   - $ docker-compose run web rails db:create
+	6. To restart the app, run
+	   - $ docker-compose run web rails db:create.
 
 	7. If things go left 
 	   - $ sudo rm tmp/pids/server.pid 
+
+	8. Notice that the data associated with the db service is stored
+	on the host machine in /data/myapp_db_volume.  This directory is
+	created when the db service starts and is owned by root.
+
+	9. Notice that volume associated with the web service is
+	dockerrailsexample_myapp_web_volume, and is located in
+	/var/lib/docker/volumes.  To inspect the volume use
+		$ docker inspect dockerrailsexample_myapp_web_volume.
 	  
 	  
 ## TO DO
