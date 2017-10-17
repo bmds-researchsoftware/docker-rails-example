@@ -51,7 +51,7 @@
 	1. Generate the Rails skeleton app
 	  - $ docker-compose run web rails new . --force --database=postgresql
 	  - $ sudo chown -R $USER:$USER .
-	  - $ docker-compose --force-rm build
+	  - $ docker-compose build --force-rm 
 
 	2. Overwrite config/database.yml
 	  - $ mv database.yml config/
