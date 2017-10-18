@@ -72,16 +72,17 @@
 
 	2. Using the appropriate container id listed in the previous
 	command, run a bash shell in the rails app container
-		- $ docker exec -it RAILS_APP_CONTAINER_ID "/bin/bash".
-	In our case use
-		- $ docker exec -it myapp-web-container "/bin/bash".
+		- $ docker exec -it --detach-keys="ctrl-@" RAILS_APP_CONTAINER_ID "/bin/bash".
+	The "--detach-keys" flag is required to enable C-p, C-n, and C-r
+	usage to work properly. In our case use
+		- $ docker exec -it --detach-keys="ctrl-@" myapp-web-container "/bin/bash".
 
 	3. Using the appropriate container id listed in the previous
-	command, run a bash shell in the database app container, and then
+	command, run a bash shell in the database container, and then
 	run psql
-		- $ docker exec -it DATABASE_CONTAINER_ID "/bin/bash".
+		- $ docker exec -it --detach-keys="ctrl-@" DATABASE_CONTAINER_ID "/bin/bash".
 	In our case use
-		- $ docker exec -it myapp-db-container "/bin/bash". Then start 
+		- $ docker exec -it --detach-keys="ctrl-@" myapp-db-container "/bin/bash". Then start 
 	psql
 		- $ psql -U postgres -d myapp_development.
 
@@ -103,11 +104,17 @@
 	created when the db service starts and is owned by root.
 
 	9. Notice that volume associated with the web service is
-	dockerrailsexample_myapp_web_volume, and is located in
+	myapp_web_volume, and is located in
 	/var/lib/docker/volumes.  To inspect the volume use
-		$ docker inspect dockerrailsexample_myapp_web_volume.
+		$ docker inspect myapp_web_volume.
+
+
+## Alternative Usage
+	1. In emacs you can do the following
+	   - M-x compile
+	   - docker-compose up --no-color --remove-orphans 
 	
-	10. You can start the web service interactively by 
+	2. You can start the web service interactively by
 		- replacing the command in the docker-compose.yml file with 
 			command: /bin/bash
 		- typing
