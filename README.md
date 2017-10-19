@@ -2,10 +2,10 @@
 
 
 ## Setup
-	Clone this repository, cd into this projects directory, and follow
-    the remain steps.  You may wish to copy this README.md file to a
-	another directory since it will be overwritten in the On Rails
-	section.
+	Clone this repository, cd into its directory, and follow the
+    remaining steps.  You may wish to copy this README.md file to a
+    another directory since it will be overwritten in the On Rails
+    section.
 
 
 ## Install Docker 
@@ -51,13 +51,13 @@
 	1. Generate the Rails skeleton app
 	  - $ docker-compose run web rails new . --force --database=postgresql
 	  - $ sudo chown -R $USER:$USER .
-	  - $ docker-compose build --force-rm 
+	  - $ docker-compose build --force-rm
 
 	2. Overwrite config/database.yml
 	  - $ mv database.yml config/
 
 	3. Start the app
-	  - $ docker-compose up --remove-orphans 
+	  - $ docker-compose up --remove-orphans
 
 	4. In another terminal create the dataase
 	  - $ docker-compose run web rails db:create
@@ -82,7 +82,7 @@
 	run psql
 		- $ docker exec -it --detach-keys="ctrl-@" DATABASE_CONTAINER_ID "/bin/bash".
 	In our case use
-		- $ docker exec -it --detach-keys="ctrl-@" myapp-db-container "/bin/bash". Then start 
+		- $ docker exec -it --detach-keys="ctrl-@" myapp-db-container "/bin/bash". Then start
 	psql
 		- $ psql -U postgres -d myapp_development.
 
@@ -96,8 +96,8 @@
 	6. To restart the app, run
 	   - $ docker-compose run web rails db:create.
 
-	7. If things go left 
-	   - $ sudo rm tmp/pids/server.pid 
+	7. If things go left
+	   - $ sudo rm tmp/pids/server.pid
 
 	8. Notice that the data associated with the db service is stored
 	on the host machine in /data/myapp_db_volume.  This directory is
@@ -112,17 +112,17 @@
 ## Alternative Usage
 	1. In emacs you can do the following
 	   - M-x compile
-	   - docker-compose up --no-color --remove-orphans 
+	   - docker-compose up --no-color --remove-orphans
 	
 	2. You can start the web service interactively by
-		- replacing the command in the docker-compose.yml file with 
+		- replacing the command in the docker-compose.yml file with
 			command: /bin/bash
 		- typing
 			$ docker-compose run --rm --service-ports web
 		- starting Rails from within the Docker container by typing
 			$ rails s -p 3000 -b '0.0.0.0'
 	If you install an editor in the container you can work inside
-	the container. 
+	the container.
 	  
 	  
 ## TO DO
