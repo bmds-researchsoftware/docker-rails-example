@@ -29,8 +29,16 @@
 
 
 ## Linux Post-installation
-	- See https://docs.docker.com/engine/installation/linux/linux-postinstall/
-	
+	- 1. See https://docs.docker.com/engine/installation/linux/linux-postinstall/
+
+	  2. sudo groupadd docker
+
+	  3. sudo usermod -aG docker $USER
+
+	  4. Log out, log back in, and confirm that you can run docker
+         commands without sudo 
+		 - $ docker run hello-world
+
 
 ## Install Docker Compose
 	1. See https://github.com/docker/compose/releases
